@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody2D rb;
-    public Transform groundcheck;
+    public Transform Groundcheck;
     public LayerMask Groundmask;
 
     void Start()
@@ -22,19 +22,23 @@ public class Movement : MonoBehaviour
         float Xspeed = 0;
         float Yspeed = rb.velocity.y;
 
-        RaycastHit2D hit = Physics2D.Raycast(groundcheck.position, new Vector2(0, -1), 0.3f, Groundmask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1), 0.3f, Groundmask);
 
         if (Input.GetKey(KeyCode.D))
         {
-            Xspeed = 25;
+            Xspeed = 30;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            Xspeed = -25;
+            Xspeed = -30;
         }
         if (Input.GetKey(KeyCode.W))
         {
-            Yspeed = 10;
+            if(hit == true)
+            {
+                Yspeed = 30;
+            }   
+            
         }
 
         rb.velocity = new Vector2(Xspeed, Yspeed);

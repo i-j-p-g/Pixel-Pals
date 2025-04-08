@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c1a194bfe81996d4cb716e27901541e5
+guid: 7c6a04b67e5feca469f72cd4d3e14f4d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,9 +121,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: SkyboxAsset
+  - name: Water Asset
     originalName: 
-    pivot: {x: 0.125, y: 0.06862745}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -131,8 +131,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 512
-      height: 102
-    spriteID: a2b9f7e9a81dc0f4baf29bb78d59b2a2
+      height: 7
+    spriteID: a72e79e0366a6f041926fe357b4e39c7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,21 +144,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1852267760
-    name: SkyboxAsset
+    guid: -1323212511
+    name: Water Asset
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: SkyboxAsset
+    - name: Water Asset
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: -7
+        y: 0
         width: 512
-        height: 102
-      spriteId: a2b9f7e9a81dc0f4baf29bb78d59b2a2
+        height: 7
+      spriteId: a72e79e0366a6f041926fe357b4e39c7
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -177,4 +177,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 128, y: 95}
+  canvasSize: {x: 512, y: 7}
