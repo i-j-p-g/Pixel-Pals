@@ -17,12 +17,14 @@ public class Movement : MonoBehaviour
     private float wallStickCounter;
     public float wallJumpForceX = 25f;
     public float wallJumpForceY = 30f;
+    
 
     private bool isTouchingWall;
     private bool isGrounded;
     private bool isWallSliding;
     private int wallDirX;
     private bool canWallJump;
+    private bool hasWallJumped;
 
     void Start()
     {
@@ -51,7 +53,7 @@ public class Movement : MonoBehaviour
 
 
             rb.velocity = new Vector2(Xspeed, 0);
-            WallCheck.localPosition = new Vector3(0.5f, WallCheck.localPosition.y, 0);
+            WallCheck.localPosition = new Vector3(0.0828f, WallCheck.localPosition.y, 0);
             //facing right!
             transform.localScale = new Vector3(25, 25, 1);
         }
@@ -89,7 +91,7 @@ public class Movement : MonoBehaviour
             wallStickCounter = wallStickTime;
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             if(hit == true)
             {
@@ -100,6 +102,7 @@ public class Movement : MonoBehaviour
                 Xspeed = -wallDirX * wallJumpForceX;
                 Yspeed = wallJumpForceY;
 
+                
                 wallStickCounter = wallStickTime; //reset timer aftrer jumping
                 canWallJump = false; //prevent multiple wall jumps in the same stick
             }
