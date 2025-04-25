@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Background
   - Surface
-  - 
+  - Wall
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: Surface
     uniqueID: 1718507039
+    locked: 0
+  - name: Wall
+    uniqueID: 2017647145
     locked: 0
   - name: player
     uniqueID: 2228688129
