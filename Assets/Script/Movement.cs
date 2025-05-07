@@ -18,13 +18,13 @@ public class Movement : MonoBehaviour
     public float wallJumpForceX = 25f;
     public float wallJumpForceY = 30f;
     
-
     private bool isTouchingWall;
     private bool isGrounded;
     private bool isWallSliding;
     private int wallDirX;
     private bool canWallJump;
     private bool hasWallJumped;
+    
 
     void Start()
     {
