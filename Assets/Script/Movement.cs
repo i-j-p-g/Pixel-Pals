@@ -24,7 +24,8 @@ public class Movement : MonoBehaviour
     private int wallDirX;
     private bool canWallJump;
     private bool hasWallJumped;
-    
+    //bool isMovingRight = Input.GetKey(KeyCode.D);
+    //bool isMovingLeft = Input.GetKey(KeyCode.A);
 
     void Start()
     {
@@ -47,15 +48,18 @@ public class Movement : MonoBehaviour
         isTouchingWall = wallHitRight || wallHitLeft;
         wallDirX = wallHitRight ? 1 : wallHitLeft ? -1 : 0;
 
-        if (Input.GetKey(KeyCode.D))
+        if (!isWallSliding && wallStickCounter > 0)
         {
-            Xspeed = moveSpeed;
+            if (Input.GetKey(KeyCode.D))
+            {
+                Xspeed = moveSpeed;
 
 
-            rb.velocity = new Vector2(Xspeed, 0);
-            WallCheck.localPosition = new Vector3(0.0828f, WallCheck.localPosition.y, 0);
-            //facing right!
-            transform.localScale = new Vector3(25, 25, 1);
+                rb.velocity = new Vector2(Xspeed, 0);
+                WallCheck.localPosition = new Vector3(0.0828f, WallCheck.localPosition.y, 0);
+                //facing right!
+                transform.localScale = new Vector3(25, 25, 1);
+            }
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -68,27 +72,29 @@ public class Movement : MonoBehaviour
             transform.localScale = new Vector3(-25, 25, 1);
         }
 
-        if (isTouchingWall && !isGrounded && rb.velocity.y < 0)
+        if (isTouchingWall && !hit && rb.velocity.y < 0)
         {
-            wallStickCounter -= Time.deltaTime;
-            canWallJump = true;
 
-            if (wallStickCounter <= 0)
+            if (wallStickCounter > 0)
             {
-                isWallSliding = true;
-                Yspeed = -wallSlideSpeed;
+                wallStickCounter -= Time.deltaTime;
+                Yspeed = 0; // stick (no slide)
+                isWallSliding = false;
             }
             else
             {
-                isWallSliding = false;
-                Yspeed = 0;
+                isWallSliding = true;
+                Yspeed = -wallSlideSpeed; // slide after stick timer
             }
+
+            canWallJump = true;
+
         }
         else
         {
             isWallSliding = false;
             canWallJump = false;
-            wallStickCounter = wallStickTime;
+            wallStickCounter = wallStickTime; //reset when off wall or grounded
         }
 
         if (Input.GetKeyDown(KeyCode.W))
@@ -97,14 +103,14 @@ public class Movement : MonoBehaviour
             {
                 Yspeed = jumpForce;
             }   
-            else if (canWallJump)
+            else if (isTouchingWall && !isGrounded)
             {
                 Xspeed = -wallDirX * wallJumpForceX;
                 Yspeed = wallJumpForceY;
 
                 
                 wallStickCounter = wallStickTime; //reset timer aftrer jumping
-                canWallJump = false; //prevent multiple wall jumps in the same stick
+                 //prevent multiple wall jumps in the same stick
             }
 
         }
