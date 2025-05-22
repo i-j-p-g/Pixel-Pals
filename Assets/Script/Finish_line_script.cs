@@ -10,9 +10,9 @@ public class Finish_line_script : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             //switch scenes
+            SceneController.instance.LeaderboardScene();
         }
     }
-       
 }
 
    
